@@ -17,8 +17,6 @@ public class RenderRegistry
 	
 	public static void registerEntityRenders()
 	{
-		//RenderingRegistry.registerEntityRenderingHandler(TutEntity.class, new TutEntityRender.RenderFactory());
-		//RenderingRegistry.registerEntityRenderingHandler(AlexEntity.class, new AlexEntityRender.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(WoodenGolem.class, new WoodenGolemRender.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(SwordWoodenGolem.class, new SwordWoodenGolemRender.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(WoodSwordWoodenGolem.class, new WoodSwordWoodenGolemRender.RenderFactory());

@@ -59,27 +59,8 @@ public class Main
 			event.getRegistry().registerAll
 			(
 					
-			//Items
-			//ItemList.tut_item = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_item")),
-			
-			//Tools
-			//ItemList.tut_sword = new SwordItem(ToolMaterialList.tutorial, 0, 6.0f, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_sword")),
-			//ItemList.tut_axe = new AxeItem(ToolMaterialList.tutorial, -1.0f, 6.0f, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_axe")),
-			//ItemList.tut_pickaxe = new PickaxeItem(ToolMaterialList.tutorial, -2, 6.0f, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_pickaxe")),
-			//ItemList.tut_shovel = new ShovelItem(ToolMaterialList.tutorial, -3, 6.0f, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_shovel")),
-			//ItemList.tut_hoe = new HoeItem(ToolMaterialList.tutorial, -4, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_hoe")),
-			
-			//Blocks
-			//ItemList.tut_block = new BlockItem(BlockList.tut_block, new Item.Properties().group(ItemGroup.MISC)).setRegistryName("tut_block"),
-			
-			//Armour
-			//ItemList.tut_helmet = new ArmorItem(ArmourMaterialList.tutorial, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_helmet")),
-			//ItemList.tut_chestplate = new ArmorItem(ArmourMaterialList.tutorial, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_chestplate")),
-			//ItemList.tut_leggings = new ArmorItem(ArmourMaterialList.tutorial, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_leggings")),
-			//ItemList.tut_boots = new ArmorItem(ArmourMaterialList.tutorial, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("tut_boots"))
-					
-			ItemList.wood_golem_food = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("wood_golem_food")),
-			ItemList.control_rod = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("control_rod"))
+					ItemList.wood_golem_food = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("wood_golem_food")),
+					ItemList.control_rod = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("control_rod"))
 			
 			);
 			
@@ -94,7 +75,7 @@ public class Main
 		{
 			event.getRegistry().registerAll
 			(
-				//BlockList.tut_block = new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(2.0f, 3.0f).lightValue(5).sound(SoundType.METAL)).setRegistryName(location("tut_block"))
+					
 			);
 			
 			logger.info("Blocks registered.");
@@ -105,8 +86,6 @@ public class Main
 		{
 			event.getRegistry().registerAll
 			(
-					//Entities.TUT_ENTITY,
-					//Entities.ALEX_ENTITY
 					Entities.WOODEN_GOLEM_ENTITY,
 					Entities.SWORD_WOODEN_GOLEM_ENTITY,
 					Entities.WOOD_SWORD_WOODEN_GOLEM_ENTITY,

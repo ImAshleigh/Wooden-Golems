@@ -19,8 +19,6 @@ import net.minecraftforge.event.RegistryEvent;
 
 public class Entities 
 {
-	//public static EntityType<?> TUT_ENTITY = EntityType.Builder.create(TutEntity::new, EntityClassification.MONSTER).build(Main.modid + ":tut_entity").setRegistryName(RegistryEvents.location("tut_entity"));
-	//public static EntityType<?> ALEX_ENTITY = EntityType.Builder.create(AlexEntity::new, EntityClassification.MONSTER).build(Main.modid + ":alex_entity").setRegistryName(RegistryEvents.location("alex_entity"));
 	public static EntityType<?> WOODEN_GOLEM_ENTITY = EntityType.Builder.create(WoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":wooden_golem_entity").setRegistryName(RegistryEvents.location("wooden_golem_entity"));
 	public static EntityType<?> SWORD_WOODEN_GOLEM_ENTITY = EntityType.Builder.create(SwordWoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":sword_wooden_golem_entity").setRegistryName(RegistryEvents.location("sword_wooden_golem_entity"));
 	public static EntityType<?> WOOD_SWORD_WOODEN_GOLEM_ENTITY = EntityType.Builder.create(WoodSwordWoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":wood_sword_wooden_golem_entity").setRegistryName(RegistryEvents.location("wood_sword_wooden_golem_entity"));
@@ -33,8 +31,6 @@ public class Entities
 	{
 		event.getRegistry().registerAll
 		(
-				//ItemList.tut_entity_egg = registerEntitySpawnEgg(TUT_ENTITY, 0xf7f7f7, 0xcfbc9d, "tut_entity_egg"),
-				//ItemList.alex_entity_egg = registerEntitySpawnEgg(ALEX_ENTITY, 0xf7f7f7, 0xcfbc9d, "alex_entity_egg")
 				ItemList.wooden_golem_entity_egg = registerEntitySpawnEgg(WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "wooden_golem_entity_egg"),
 				ItemList.sword_wooden_golem_entity_egg = registerEntitySpawnEgg(SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "sword_wooden_golem_entity_egg"),
 				ItemList.wood_sword_wooden_golem_entity = registerEntitySpawnEgg(WOOD_SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "wood_sword_wooden_golem_entity_egg"),
@@ -46,8 +42,6 @@ public class Entities
 	
 	public static void registerEntityWorldSpawns()
 	{
-		//registerEntityWorldSpawn(TUT_ENTITY, Biomes.PLAINS, Biomes.BADLANDS, Biomes.BIRCH_FOREST, Biomes.FOREST, Biomes.JUNGLE, Biomes.BEACH, Biomes.DESERT, Biomes.RIVER, Biomes.TAIGA, Biomes.SWAMP, Biomes.SWAMP_HILLS);
-		//registerEntityWorldSpawn(RED_DRAGON_ENTITY, Biomes.PLAINS, Biomes.BADLANDS, Biomes.BIRCH_FOREST, Biomes.FOREST, Biomes.JUNGLE, Biomes.BEACH, Biomes.DESERT, Biomes.RIVER, Biomes.TAIGA, Biomes.SWAMP, Biomes.SWAMP_HILLS);
 	}
 	
 	public static Item registerEntitySpawnEgg(EntityType<?> type, int color1, int color2, String name)

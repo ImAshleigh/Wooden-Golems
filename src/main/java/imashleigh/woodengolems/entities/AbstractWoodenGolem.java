@@ -69,14 +69,17 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public abstract class AbstractWoodenGolem extends CustomGolem implements IRangedAttackMob {
+public abstract class AbstractWoodenGolem extends CustomGolem implements IRangedAttackMob 
+{
 	   private final RangedGolemBowAttackGoal<AbstractWoodenGolem> aiArrowAttack = new RangedGolemBowAttackGoal<>(this, 1.0D, 20, 15.0F);
 	   private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(AbstractWoodenGolem.class, DataSerializers.FLOAT);
-	   private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
+	   private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) 
+	   {
 	      /**
 	       * Reset the task's internal state. Called when this task is interrupted by another one
 	       */
-	      public void resetTask() {
+	      public void resetTask() 
+	      {
 	         super.resetTask();
 	         AbstractWoodenGolem.this.setAggroed(false);
 	      }
@@ -84,13 +87,15 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 	      /**
 	       * Execute a one shot task or start executing a continuous task
 	       */
-	      public void startExecuting() {
+	      public void startExecuting() 
+	      {
 	         super.startExecuting();
 	         AbstractWoodenGolem.this.setAggroed(true);
 	      }
 	   };
 
-	   protected AbstractWoodenGolem(EntityType<? extends AbstractWoodenGolem> type, World worldIn) {
+	   protected AbstractWoodenGolem(EntityType<? extends AbstractWoodenGolem> type, World worldIn) 
+	   {
 	      super(type, worldIn);
 	      this.setCombatTask();
 	   }
@@ -118,19 +123,22 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 	       }));
 	   }
 
-	   protected void registerAttributes() {
+	   protected void registerAttributes() 
+	   {
 	      super.registerAttributes();
 	      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
 	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);;
 	   }
 
-	   protected void playStepSound(BlockPos pos, BlockState blockIn) {
+	   protected void playStepSound(BlockPos pos, BlockState blockIn) 
+	   {
 	      this.playSound(this.getStepSound(), 0.15F, 1.0F);
 	   }
 
 	   protected abstract SoundEvent getStepSound();
 
-	   public CreatureAttribute getCreatureAttribute() {
+	   public CreatureAttribute getCreatureAttribute() 
+	   {
 	      return CreatureAttribute.UNDEFINED;
 	   }
 
@@ -148,19 +156,21 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 	   /**
 	    * Handles updating while riding another entity
 	    */
-	   public void updateRidden() {
+	   public void updateRidden() 
+	   {
 	      super.updateRidden();
-	      if (this.getRidingEntity() instanceof CreatureEntity) {
+	      if (this.getRidingEntity() instanceof CreatureEntity) 
+	      {
 	         CreatureEntity creatureentity = (CreatureEntity)this.getRidingEntity();
 	         this.renderYawOffset = creatureentity.renderYawOffset;
 	      }
 
 	   }
 
-	   /**
-	    * Gives armor or weapon for entity based on given DifficultyInstance
-	    */
-	   protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+
+	   
+	   protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) 
+	   {
 	      super.setEquipmentBasedOnDifficulty(difficulty);
 	      this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BOW));
 	   }
@@ -179,27 +189,32 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 	   /**
 	    * sets this entity's combat AI.
 	    */
-	   public void setCombatTask() {
-	      if (this.world != null && !this.world.isRemote) {
+	   public void setCombatTask() 
+	   {
+	      if (this.world != null && !this.world.isRemote) 
+	      {
 	         this.goalSelector.removeGoal(this.aiAttackOnCollide);
 	         this.goalSelector.removeGoal(this.aiArrowAttack);
 	         ItemStack itemstack = this.getHeldItem(ProjectileHelper.getHandWith(this, Items.BOW));
-	         if (itemstack.getItem() instanceof net.minecraft.item.BowItem) {
+	         if (itemstack.getItem() instanceof net.minecraft.item.BowItem) 
+	         {
 	            int i = 35;
 
 	            this.aiArrowAttack.setAttackCooldown(i);
 	            this.goalSelector.addGoal(3, this.aiArrowAttack);
-	         } else {
+	         } 
+	         else 
+	         {
 	            this.goalSelector.addGoal(3, this.aiAttackOnCollide);
 	         }
 
 	      }
 	   }
 
-	   /**
-	    * Attack the specified entity using a ranged attack.
-	    */
-	   public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
+
+	   //Skeleton ranged attack
+	   public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) 
+	   {
 	      ItemStack itemstack = this.findAmmo(this.getHeldItem(ProjectileHelper.getHandWith(this, Items.BOW)));
 	      AbstractArrowEntity abstractarrowentity = this.fireArrow(itemstack, distanceFactor);
 	      if (this.getHeldItemMainhand().getItem() instanceof net.minecraft.item.BowItem)
@@ -213,50 +228,57 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 	      this.world.addEntity(abstractarrowentity);
 	   }
 
-	   /**
-	    * Fires an arrow
-	    */
-	   protected AbstractArrowEntity fireArrow(ItemStack arrowStack, float distanceFactor) {
+	   //Skeleton ranged attack
+	   protected AbstractArrowEntity fireArrow(ItemStack arrowStack, float distanceFactor) 
+	   {
 	      return ProjectileHelper.fireArrow(this, arrowStack, distanceFactor);
 	   }
 
 	   /**
 	    * (abstract) Protected helper method to read subclass entity data from NBT.
 	    */
-	   public void readAdditional(CompoundNBT compound) {
+	   public void readAdditional(CompoundNBT compound) 
+	   {
 	      super.readAdditional(compound);
 	      this.setCombatTask();
 	   }
 
-	   public void setItemStackToSlot(EquipmentSlotType slotIn, ItemStack stack) {
+	   public void setItemStackToSlot(EquipmentSlotType slotIn, ItemStack stack) 
+	   {
 	      super.setItemStackToSlot(slotIn, stack);
-	      if (!this.world.isRemote) {
+	      if (!this.world.isRemote) 
+	      {
 	         this.setCombatTask();
 	      }
 
 	   }
 
-	   protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+	   protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) 
+	   {
 	      return 1.74F;
 	   }
 
 	   /**
 	    * Returns the Y Offset of this entity.
 	    */
-	   public double getYOffset() {
+	   public double getYOffset() 
+	   {
 	      return -0.6D;
 	   }
 	   
-	   public boolean canDespawn(double distanceToClosestPlayer) {
+	   public boolean canDespawn(double distanceToClosestPlayer) 
+	   {
 		      return false;
-		   }
+	   }
 	   
-	   protected void registerData() {
+	   protected void registerData() 
+	   {
 		      super.registerData();
 		      this.dataManager.register(DATA_HEALTH_ID, this.getHealth());
-		   }
+	   }
 	   
-	   public boolean canAttack(EntityType<?> typeIn) {
+	   public boolean canAttack(EntityType<?> typeIn) 
+	   {
 		      if (
 		    		  typeIn == EntityType.PLAYER 
 		    		  || typeIn == Entities.WOODEN_GOLEM_ENTITY 
@@ -276,33 +298,41 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		      
 		   }
 	   
-	   public void writeAdditional(CompoundNBT compound) {
+	   public void writeAdditional(CompoundNBT compound) 
+	   {
 		      super.writeAdditional(compound);
 		   }
 	   
 		   
 		   
-		   public boolean canBeLeashedTo(PlayerEntity player) {
+		   public boolean canBeLeashedTo(PlayerEntity player) 
+		   {
 			      return !this.getLeashed();
-			   }
+		   }
 		   
 		   @Override
-		   public boolean isPreventingPlayerRest(PlayerEntity playerIn) {
+		   public boolean isPreventingPlayerRest(PlayerEntity playerIn) 
+		   {
 			      return false;
-			   }
+		   }
 		   
-		   protected void updateAITasks() {
+		   protected void updateAITasks() 
+		   {
 			      this.dataManager.set(DATA_HEALTH_ID, this.getHealth());
-			   }
+		   }
 		   
 		   public boolean processInteract(PlayerEntity player, Hand hand) 
 		   {
 			      ItemStack itemstack = player.getHeldItem(hand);
 			      Item item = itemstack.getItem();
-			         if (!itemstack.isEmpty()) {
-			            if (item == ItemList.wood_golem_food) {
-			               if (this.dataManager.get(DATA_HEALTH_ID) < 40.0F) {
-			                  if (!player.abilities.isCreativeMode) {
+			         if (!itemstack.isEmpty()) 
+			         {
+			            if (item == ItemList.wood_golem_food) 
+			            {
+			               if (this.dataManager.get(DATA_HEALTH_ID) < 40.0F) 
+			               {
+			                  if (!player.abilities.isCreativeMode) 
+			                  {
 			                     itemstack.shrink(1);
 			                  }
 
@@ -337,8 +367,9 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			            {
 			            	swapMainHand(player, itemstack, item);
 				        }
-			            //Armour
 			            
+			            
+			            //Armour          
 			            //Leather
 			            if (item == Items.LEATHER_CHESTPLATE)
 			            {
@@ -408,10 +439,10 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			            	swapBoots(player, itemstack, item);
 			            }
 			            
-			            
-			            
+			            		            
 			            //Taming
-			            else if (item == ItemList.control_rod) {
+			            else if (item == ItemList.control_rod) 
+			            {
 
 			                if (!this.world.isRemote) 
 			                {
@@ -468,9 +499,11 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		   
 		   
 		   
-		   protected void playEatEffect() {
+		   protected void playEatEffect() 
+		   {
 			      IParticleData iparticledata = ParticleTypes.HEART;
-			      for(int i = 0; i < 7; ++i) {
+			      for(int i = 0; i < 7; ++i) 
+			      {
 			         double d0 = this.rand.nextGaussian() * 0.02D;
 			         double d1 = this.rand.nextGaussian() * 0.02D;
 			         double d2 = this.rand.nextGaussian() * 0.02D;
