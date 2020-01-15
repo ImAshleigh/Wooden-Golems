@@ -326,8 +326,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			      ItemStack itemstack = player.getHeldItem(hand);
 			      Item item = itemstack.getItem();
 			      
-			      //Remove Golem Gear
-		            if (itemstack.isEmpty() && player.isSneaking())
+		            if (player.isSneaking())
 		            {
 		            	dropInventory();
 		            	this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(null));
@@ -335,6 +334,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		            	this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(null));
 		            	this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(null));
 		            }
+			      
 			         if (!itemstack.isEmpty()) 
 			         {
 			            if (item == ItemList.wood_golem_food) 
@@ -353,101 +353,104 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			            }
 			            
 			            
-			            //Weapons
-			            if (item == Items.WOODEN_SWORD) 
+			            if(!player.isSneaking())
 			            {
-			            	swapMainHand(player, itemstack, item);
-				        }
-			            if (item == Items.STONE_SWORD) 
-			            {
-			            	swapMainHand(player, itemstack, item);
-				        }
-			            if (item == Items.IRON_SWORD) 
-			            {
-			            	swapMainHand(player, itemstack, item);
-				        }
-			            if (item == Items.GOLDEN_SWORD) 
-			            {
-			            	swapMainHand(player, itemstack, item);
-				        }
-			            if (item == Items.DIAMOND_SWORD) 
-			            {
-			            	swapMainHand(player, itemstack, item);
-				        }
-			            if (item == Items.BOW) 
-			            {
-			            	swapMainHand(player, itemstack, item);
-				        }
-			            
-			            
-			            //Armour          
-			            //Leather
-			            if (item == Items.LEATHER_CHESTPLATE)
-			            {
-			            	swapChest(player, itemstack, item);
-			            }
-			            if (item == Items.LEATHER_LEGGINGS)
-			            {
-			            	swapLeggings(player, itemstack, item);
-			            }
-			            if (item == Items.LEATHER_BOOTS)
-			            {
-			            	swapBoots(player, itemstack, item);
-			            }
-			            //IRON
-			            if (item == Items.IRON_CHESTPLATE)
-			            {
-			            	swapChest(player, itemstack, item);
-			            }
-			            if (item == Items.IRON_LEGGINGS)
-			            {
-			            	swapLeggings(player, itemstack, item);
-			            }
-			            if (item == Items.IRON_BOOTS)
-			            {
-			            	swapBoots(player, itemstack, item);
-			            }
-			            
-			            //GOLDEN
-			            if (item == Items.GOLDEN_CHESTPLATE)
-			            {
-			            	swapChest(player, itemstack, item);
-			            }
-			            if (item == Items.GOLDEN_LEGGINGS)
-			            {
-			            	swapLeggings(player, itemstack, item);
-			            }
-			            if (item == Items.GOLDEN_BOOTS)
-			            {
-			            	swapBoots(player, itemstack, item);
-			            }
-			            
-			            //CHAIN
-			            if (item == Items.CHAINMAIL_CHESTPLATE)
-			            {
-			            	swapChest(player, itemstack, item);
-			            }
-			            if (item == Items.CHAINMAIL_LEGGINGS)
-			            {
-			            	swapLeggings(player, itemstack, item);
-			            }
-			            if (item == Items.CHAINMAIL_BOOTS)
-			            {
-			            	swapBoots(player, itemstack, item);
-			            }
-			            
-			            //DIAMOND
-			            if (item == Items.DIAMOND_CHESTPLATE)
-			            {
-			            	swapChest(player, itemstack, item);
-			            }
-			            if (item == Items.DIAMOND_LEGGINGS)
-			            {
-			            	swapLeggings(player, itemstack, item);
-			            }
-			            if (item == Items.DIAMOND_BOOTS)
-			            {
-			            	swapBoots(player, itemstack, item);
+			            	//Weapons
+				            if (item == Items.WOODEN_SWORD) 
+				            {
+				            	swapMainHand(player, itemstack, item);
+					        }
+				            if (item == Items.STONE_SWORD) 
+				            {
+				            	swapMainHand(player, itemstack, item);
+					        }
+				            if (item == Items.IRON_SWORD) 
+				            {
+				            	swapMainHand(player, itemstack, item);
+					        }
+				            if (item == Items.GOLDEN_SWORD) 
+				            {
+				            	swapMainHand(player, itemstack, item);
+					        }
+				            if (item == Items.DIAMOND_SWORD) 
+				            {
+				            	swapMainHand(player, itemstack, item);
+					        }
+				            if (item == Items.BOW) 
+				            {
+				            	swapMainHand(player, itemstack, item);
+					        }
+				            
+				            
+				            //Armour          
+				            //Leather
+				            if (item == Items.LEATHER_CHESTPLATE)
+				            {		      
+				            	swapChest(player, itemstack, item);
+				            }
+				            if (item == Items.LEATHER_LEGGINGS)
+				            {
+				            	swapLeggings(player, itemstack, item);
+				            }
+				            if (item == Items.LEATHER_BOOTS)
+				            {
+				            	swapBoots(player, itemstack, item);
+				            }
+				            //IRON
+				            if (item == Items.IRON_CHESTPLATE)
+				            {
+				            	swapChest(player, itemstack, item);
+				            }
+				            if (item == Items.IRON_LEGGINGS)
+				            {
+				            	swapLeggings(player, itemstack, item);
+				            }
+				            if (item == Items.IRON_BOOTS)
+				            {
+				            	swapBoots(player, itemstack, item);
+				            }
+				            
+				            //GOLDEN
+				            if (item == Items.GOLDEN_CHESTPLATE)
+				            {
+				            	swapChest(player, itemstack, item);
+				            }
+				            if (item == Items.GOLDEN_LEGGINGS)
+				            {
+				            	swapLeggings(player, itemstack, item);
+				            }
+				            if (item == Items.GOLDEN_BOOTS)
+				            {
+				            	swapBoots(player, itemstack, item);
+				            }
+				            
+				            //CHAIN
+				            if (item == Items.CHAINMAIL_CHESTPLATE)
+				            {
+				            	swapChest(player, itemstack, item);
+				            }
+				            if (item == Items.CHAINMAIL_LEGGINGS)
+				            {
+				            	swapLeggings(player, itemstack, item);
+				            }
+				            if (item == Items.CHAINMAIL_BOOTS)
+				            {
+				            	swapBoots(player, itemstack, item);
+				            }
+				            
+				            //DIAMOND
+				            if (item == Items.DIAMOND_CHESTPLATE)
+				            {
+				            	swapChest(player, itemstack, item);
+				            }
+				            if (item == Items.DIAMOND_LEGGINGS)
+				            {
+				            	swapLeggings(player, itemstack, item);
+				            }
+				            if (item == Items.DIAMOND_BOOTS)
+				            {
+				            	swapBoots(player, itemstack, item);
+				            }
 			            }
 			            
 			            		            
