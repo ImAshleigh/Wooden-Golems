@@ -466,7 +466,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			            
 			            		            
 			            //Taming
-			            else if (item == ItemList.control_rod) 
+			            if (item == ItemList.control_rod) 
 			            {
 
 			                if (!this.world.isRemote) 

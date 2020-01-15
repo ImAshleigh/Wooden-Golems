@@ -7,18 +7,18 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:emerald"
+            "item": "minecraft:diamond"
         },
         "C": {
             "item": "minecraft:carved_pumpkin"
         },
         "S": {
-            "item": "minecraft:stone_sword"
+            "item": "minecraft:splash_potion"
         },
         "/": {
             "item": "minecraft:stick"
         }
     },
-    "result": { "item": "woodengolems:sword_wooden_golem_entity_egg"},
+    "result": { "item": "woodengolems:support_wooden_golem_entity_egg"},
 	"count": 1
 }
