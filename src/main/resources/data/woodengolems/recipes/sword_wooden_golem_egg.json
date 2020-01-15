@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#C#",
+        "S//",
+        "#/#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:emerald"
+        },
+        "C": {
+            "item": "minecraft:carved_pumpkin"
+        },
+        "S": {
+            "item": "minecraft:stone_sword"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": { "item": "woodengolems:sword_wooden_golem_entity_egg"},
+	"count": 1
+}

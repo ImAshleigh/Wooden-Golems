@@ -1,0 +1,28 @@
+
+modLoader="javafml" #mandatory
+
+loaderVersion="[28,)" #mandatory (28 is current forge version)
+
+
+[[mods]] #mandatory
+
+modId="woodengolems" #mandatory
+
+version="1.2" #mandatory
+
+displayName="Wooden Golems" #mandatory
+
+authors="ImAshleigh" #optional
+
+description='''
+
+Wooden Golems adds craftable golems into Minecraft. They come in two variants, one equiped with a sword and another with a bow.
+
+'''
+
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"

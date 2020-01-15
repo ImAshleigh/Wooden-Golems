@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "i",
+        "i"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:emerald"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": { "item": "woodengolems:control_rod"},
+	"count": 1
+}
