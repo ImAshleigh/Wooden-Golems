@@ -13,12 +13,12 @@
             "item": "minecraft:carved_pumpkin"
         },
         "S": {
-            "item": "minecraft:splash_potion"
+            "item": "minecraft:stone_sword"
         },
         "/": {
             "item": "minecraft:stick"
         }
     },
-    "result": { "item": "woodengolems:support_wooden_golem_entity_egg"},
+    "result": { "item": "woodengolems:sword_wooden_golem_entity_egg"},
 	"count": 1
 }
