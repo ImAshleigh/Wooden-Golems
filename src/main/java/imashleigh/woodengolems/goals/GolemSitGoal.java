@@ -1,7 +1,5 @@
 package imashleigh.woodengolems.goals;
 
-import java.util.EnumSet;
-
 import imashleigh.woodengolems.entities.CustomGolem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;

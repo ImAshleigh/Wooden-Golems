@@ -13,6 +13,7 @@ public class ItemList
 	
 	public static Item wood_golem_food;
 	public static Item control_rod;
+	public static Item support_wooden_golem_entity_egg;
 
 
 }

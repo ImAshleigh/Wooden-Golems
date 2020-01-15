@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.TargetGoal;
-import net.minecraft.entity.passive.TameableEntity;
 
 public class GolemOwnerHurtTargetGoal extends TargetGoal {
 	   private final CustomGolem tameable;

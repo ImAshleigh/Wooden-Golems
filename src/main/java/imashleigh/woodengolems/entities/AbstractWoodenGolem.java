@@ -23,9 +23,6 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.DefendVillageTargetGoal;
-import net.minecraft.entity.ai.goal.FollowMobGoal;
-import net.minecraft.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -33,22 +30,14 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.MoveThroughVillageGoal;
 import net.minecraft.entity.ai.goal.MoveTowardsVillageGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.OwnerHurtByTargetGoal;
-import net.minecraft.entity.ai.goal.OwnerHurtTargetGoal;
-import net.minecraft.entity.ai.goal.RangedBowAttackGoal;
-import net.minecraft.entity.ai.goal.SitGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -64,7 +53,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -72,7 +60,7 @@ import net.minecraft.world.World;
 public abstract class AbstractWoodenGolem extends CustomGolem implements IRangedAttackMob 
 {
 	   private final RangedGolemBowAttackGoal<AbstractWoodenGolem> aiArrowAttack = new RangedGolemBowAttackGoal<>(this, 1.0D, 20, 15.0F);
-	   private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(AbstractWoodenGolem.class, DataSerializers.FLOAT);
+	   public static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(AbstractWoodenGolem.class, DataSerializers.FLOAT);
 	   private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) 
 	   {
 	      /**
@@ -99,10 +87,12 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 	      super(type, worldIn);
 	      this.setCombatTask();
 	   }
+	   
 
 	   protected void registerGoals() 
 	   {
 		   this.sitGoal = new GolemSitGoal(this);
+		   this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, AbstractWoodenGolem.class)).setCallsForHelp());
 		   this.goalSelector.addGoal(1, this.sitGoal);
 		  this.goalSelector.addGoal(4, new GolemFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
 	      this.targetSelector.addGoal(1, new GolemOwnerHurtByTargetGoal(this));
@@ -287,6 +277,8 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		    		  || typeIn == Entities.IRON_SWORD_WOODEN_GOLEM_ENTITY
 		    		  || typeIn == Entities.GOLDEN_SWORD_WOODEN_GOLEM_ENTITY
 		    		  || typeIn == Entities.DIAMOND_SWORD_WOODEN_GOLEM_ENTITY
+		    		  || typeIn == Entities.SUPPORT_WOODEN_GOLEM
+		    		
 		    	  ) 
 		      {
 		         return false;
@@ -328,11 +320,22 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			      
 		            if (player.isSneaking())
 		            {
-		            	dropInventory();
-		            	this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(null));
-		            	this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(null));
-		            	this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(null));
-		            	this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(null));
+		            	if(this instanceof SupportWoodenGolem)
+		            	{
+			            	dropInventoryS();
+			            	this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(null));
+			            	this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(null));
+			            	this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(null));
+		            	}
+		            	else
+		            	{
+			            	dropInventory();
+			            	this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(null));
+			            	this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(null));
+			            	this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(null));
+			            	this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(null));
+		            	}
+
 		            }
 			      
 			         if (!itemstack.isEmpty()) 
@@ -355,31 +358,39 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			            
 			            if(!player.isSneaking())
 			            {
-			            	//Weapons
-				            if (item == Items.WOODEN_SWORD) 
-				            {
-				            	swapMainHand(player, itemstack, item);
-					        }
-				            if (item == Items.STONE_SWORD) 
-				            {
-				            	swapMainHand(player, itemstack, item);
-					        }
-				            if (item == Items.IRON_SWORD) 
-				            {
-				            	swapMainHand(player, itemstack, item);
-					        }
-				            if (item == Items.GOLDEN_SWORD) 
-				            {
-				            	swapMainHand(player, itemstack, item);
-					        }
-				            if (item == Items.DIAMOND_SWORD) 
-				            {
-				            	swapMainHand(player, itemstack, item);
-					        }
-				            if (item == Items.BOW) 
-				            {
-				            	swapMainHand(player, itemstack, item);
-					        }
+			            	if(this instanceof SupportWoodenGolem)
+			            	{
+			            		
+			            	}
+			            	else
+			            	{
+				            	//Weapons
+					            if (item == Items.WOODEN_SWORD) 
+					            {
+					            	swapMainHand(player, itemstack, item);
+						        }
+					            if (item == Items.STONE_SWORD) 
+					            {
+					            	swapMainHand(player, itemstack, item);
+						        }
+					            if (item == Items.IRON_SWORD) 
+					            {
+					            	swapMainHand(player, itemstack, item);
+						        }
+					            if (item == Items.GOLDEN_SWORD) 
+					            {
+					            	swapMainHand(player, itemstack, item);
+						        }
+					            if (item == Items.DIAMOND_SWORD) 
+					            {
+					            	swapMainHand(player, itemstack, item);
+						        }
+					            if (item == Items.BOW) 
+					            {
+					            	swapMainHand(player, itemstack, item);
+						        }
+			            		
+			            	}
 				            
 				            
 				            //Armour          
@@ -566,7 +577,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			  
 		   }
 		   
-		   private void swapMainHand(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
+		   public void swapMainHand(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
 		   {
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.MAINHAND);
            		this.entityDropItem(dropItem);
@@ -580,7 +591,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		   }
 		   
 		   
-		   private void swapChest(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
+		   public void swapChest(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
 		   {
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.CHEST);
            		this.entityDropItem(dropItem);
@@ -593,7 +604,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			   
 		   }
 		   
-		   private void swapLeggings(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
+		   public void swapLeggings(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
 		   {
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.LEGS);
            		this.entityDropItem(dropItem);
@@ -606,7 +617,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			   
 		   }
 		   
-		   private void swapBoots(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
+		   public void swapBoots(PlayerEntity player1, ItemStack itemstack1, IItemProvider item1)
 		   {
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.FEET);
            		this.entityDropItem(dropItem);
@@ -617,6 +628,17 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
                     itemstack1.shrink(1);
                  }
 			   
+		   }
+		   
+		   protected void dropInventoryS() 
+		   {
+			   ItemStack chest = getItemStackFromSlot(EquipmentSlotType.CHEST);
+			   ItemStack legs = getItemStackFromSlot(EquipmentSlotType.LEGS);
+			   ItemStack boots = getItemStackFromSlot(EquipmentSlotType.FEET);
+			   this.entityDropItem(chest);
+			   this.entityDropItem(legs);
+			   this.entityDropItem(boots);
+			  
 		   }
 		   
 		   

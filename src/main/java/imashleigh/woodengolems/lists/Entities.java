@@ -5,6 +5,7 @@ import imashleigh.woodengolems.Main.RegistryEvents;
 import imashleigh.woodengolems.entities.DiamondSwordWoodenGolem;
 import imashleigh.woodengolems.entities.GoldSwordWoodenGolem;
 import imashleigh.woodengolems.entities.IronSwordWoodenGolem;
+import imashleigh.woodengolems.entities.SupportWoodenGolem;
 import imashleigh.woodengolems.entities.SwordWoodenGolem;
 import imashleigh.woodengolems.entities.WoodSwordWoodenGolem;
 import imashleigh.woodengolems.entities.WoodenGolem;
@@ -25,6 +26,8 @@ public class Entities
 	public static EntityType<?> IRON_SWORD_WOODEN_GOLEM_ENTITY = EntityType.Builder.create(IronSwordWoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":iron_sword_wooden_golem_entity").setRegistryName(RegistryEvents.location("iron_sword_wooden_golem_entity"));
 	public static EntityType<?> GOLDEN_SWORD_WOODEN_GOLEM_ENTITY = EntityType.Builder.create(GoldSwordWoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":gold_sword_wooden_golem_entity").setRegistryName(RegistryEvents.location("gold_sword_wooden_golem_entity"));
 	public static EntityType<?> DIAMOND_SWORD_WOODEN_GOLEM_ENTITY = EntityType.Builder.create(DiamondSwordWoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":diamond_sword_wooden_golem_entity").setRegistryName(RegistryEvents.location("diamond_sword_wooden_golem_entity"));
+	public static EntityType<?> SUPPORT_WOODEN_GOLEM = EntityType.Builder.create(SupportWoodenGolem::new, EntityClassification.MONSTER).build(Main.modid +":support_wooden_golem_entity").setRegistryName(RegistryEvents.location("support_wooden_golem_entity"));
+
 
 	
 	public static void registerEntitySpawnEggs(final RegistryEvent.Register<Item> event)
@@ -36,7 +39,8 @@ public class Entities
 				ItemList.wood_sword_wooden_golem_entity = registerEntitySpawnEgg(WOOD_SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "wood_sword_wooden_golem_entity_egg"),
 				ItemList.iron_sword_wooden_golem_entity = registerEntitySpawnEgg(IRON_SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "iron_sword_wooden_golem_entity_egg"),
 				ItemList.gold_sword_wooden_golem_entity_egg = registerEntitySpawnEgg(GOLDEN_SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "gold_sword_wooden_golem_entity_egg"),
-				ItemList.diamond_sword_wooden_golem_entity_egg = registerEntitySpawnEgg(DIAMOND_SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "diamond_sword_wooden_golem_entity_egg")
+				ItemList.diamond_sword_wooden_golem_entity_egg = registerEntitySpawnEgg(DIAMOND_SWORD_WOODEN_GOLEM_ENTITY, 0xf7f7f7, 0xcfbc9d, "diamond_sword_wooden_golem_entity_egg"),
+				ItemList.support_wooden_golem_entity_egg = registerEntitySpawnEgg(SUPPORT_WOODEN_GOLEM, 0xf7f7f7, 0xcfbc9d, "support_wooden_golem_entity_egg")
 		);
 	}
 	

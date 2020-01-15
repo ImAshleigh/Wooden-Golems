@@ -91,7 +91,8 @@ public class Main
 					Entities.WOOD_SWORD_WOODEN_GOLEM_ENTITY,
 					Entities.IRON_SWORD_WOODEN_GOLEM_ENTITY,
 					Entities.GOLDEN_SWORD_WOODEN_GOLEM_ENTITY,
-					Entities.DIAMOND_SWORD_WOODEN_GOLEM_ENTITY
+					Entities.DIAMOND_SWORD_WOODEN_GOLEM_ENTITY,
+					Entities.SUPPORT_WOODEN_GOLEM
 			);
 			
 			Entities.registerEntityWorldSpawns();

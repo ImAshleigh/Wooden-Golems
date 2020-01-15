@@ -8,7 +8,7 @@ loaderVersion="[28,)" #mandatory (28 is current forge version)
 
 modId="woodengolems" #mandatory
 
-version="1.2" #mandatory
+version="1.5" #mandatory
 
 displayName="Wooden Golems" #mandatory
 

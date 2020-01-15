@@ -5,6 +5,7 @@
 	"item.woodengolems.iron_sword_wooden_golem_entity_egg": "Wooden Golem (Iron Sword)",
 	"item.woodengolems.gold_sword_wooden_golem_entity_egg": "Wooden Golem (Golden Sword)",
 	"item.woodengolems.diamond_sword_wooden_golem_entity_egg": "Wooden Golem (Diamond Sword)",
+	"item.woodengolems.support_wooden_golem_entity_egg": "Wooden Golem (Support)",
 	"item.woodengolems.wood_golem_food": "Golem Repair-kit",
 	"item.woodengolems.control_rod": "Control Rod",
 	
@@ -13,5 +14,6 @@
 	"entity.woodengolems.wood_sword_wooden_golem": "Wooden Golem",
 	"entity.woodengolems.iron_sword_wooden_golem": "Wooden Golem",
 	"entity.woodengolems.gold_sword_wooden_golem": "Wooden Golem",
-	"entity.woodengolems.diamond_sword_wooden_golem": "Wooden Golem"
+	"entity.woodengolems.diamond_sword_wooden_golem": "Wooden Golem",
+	"entity.woodengolems.support_wooden_golem": "Wooden Golem"
 }

@@ -1,6 +1,5 @@
 package imashleigh.woodengolems.client.models;
 
-import imashleigh.woodengolems.entities.SwordWoodenGolem;
 import imashleigh.woodengolems.entities.WoodSwordWoodenGolem;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.entity.model.SkeletonModel;
