@@ -325,6 +325,16 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		   {
 			      ItemStack itemstack = player.getHeldItem(hand);
 			      Item item = itemstack.getItem();
+			      
+			      //Remove Golem Gear
+		            if (itemstack.isEmpty() && player.isSneaking())
+		            {
+		            	dropInventory();
+		            	this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(null));
+		            	this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(null));
+		            	this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(null));
+		            	this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(null));
+		            }
 			         if (!itemstack.isEmpty()) 
 			         {
 			            if (item == ItemList.wood_golem_food) 
@@ -341,6 +351,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 			                  return true;
 			               }
 			            }
+			            
 			            
 			            //Weapons
 			            if (item == Items.WOODEN_SWORD) 
