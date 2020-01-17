@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ArrowLayer;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
+import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.client.renderer.entity.model.SkeletonModel;
 import net.minecraft.util.ResourceLocation;
@@ -27,6 +28,7 @@ public class WoodenGolemRender extends MobRenderer<WoodenGolem, WoodenGolemModel
 		    this.addLayer(new ArrowLayer<>(this));
 		    this.addLayer(new WoodenGolemHeadLayer(this));
 		    this.addLayer(new BipedArmorLayer<>(this, new SkeletonModel<>(0.5F, true), new SkeletonModel<>(1.0F, true)));
+		    this.addLayer(new ElytraLayer<>(this));
 	   }
 
 	   protected ResourceLocation getEntityTexture(WoodenGolem entity) {
