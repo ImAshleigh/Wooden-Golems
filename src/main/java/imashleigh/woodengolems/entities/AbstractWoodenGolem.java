@@ -316,6 +316,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		   public boolean processInteract(PlayerEntity player, Hand hand) 
 		   {
 			      ItemStack itemstack = player.getHeldItem(hand);
+			      //EnchantmentHelper.getEnchantments(itemstack);
 			      Item item = itemstack.getItem();
 			      
 		            if (player.isSneaking())
@@ -581,8 +582,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
 		   {
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.MAINHAND);
            		this.entityDropItem(dropItem);
-		    
-           		this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(item1));
+           		this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemstack1);
                
            		if (!player1.abilities.isCreativeMode) {
                     itemstack1.shrink(1);
@@ -596,7 +596,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.CHEST);
            		this.entityDropItem(dropItem);
 		    
-           		this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(item1));
+           		this.setItemStackToSlot(EquipmentSlotType.CHEST, itemstack1);
                
            		if (!player1.abilities.isCreativeMode) {
                     itemstack1.shrink(1);
@@ -609,7 +609,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.LEGS);
            		this.entityDropItem(dropItem);
 		    
-           		this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(item1));
+           		this.setItemStackToSlot(EquipmentSlotType.LEGS, itemstack1);
                
            		if (!player1.abilities.isCreativeMode) {
                     itemstack1.shrink(1);
@@ -622,7 +622,7 @@ public abstract class AbstractWoodenGolem extends CustomGolem implements IRanged
            		ItemStack dropItem = getItemStackFromSlot(EquipmentSlotType.FEET);
            		this.entityDropItem(dropItem);
 		    
-           		this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(item1));
+           		this.setItemStackToSlot(EquipmentSlotType.FEET, itemstack1);
                
            		if (!player1.abilities.isCreativeMode) {
                     itemstack1.shrink(1);
